@@ -2,10 +2,11 @@ from flask import Flask, render_template, request, session, redirect, url_for
 from flask_socketio import join_room, leave_room, send, SocketIO
 import random
 from string import ascii_uppercase
+import eventlet
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "i2pchatroom"
-socketio = SocketIO(app)
+socketio = SocketIO(app, async_mode='eventlet')
 
 rooms = {}
 
@@ -106,4 +107,4 @@ def disconnect():
 
 
 if __name__ == "__main__":
-    socketio.run(app, debug=True)
+    eventlet.wsgi.server(eventlet.listen(('127.0.0.1',5000)), app)

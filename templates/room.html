@@ -44,11 +44,14 @@
 
     `;
   messages.innerHTML += content;
+  	console.log("Dosao do close");
 };
 
 
 socketio.on("message", (data) => {
+	console.log("otvorio socket");
   createMessage(data.name, data.message, data.is_self);
+	console.log("zatvorio socket");
 });
 
 
@@ -56,13 +59,17 @@ socketio.on("message", (data) => {
   const sendMessage = () => {
     const message = document.getElementById("message");
     if (message.value == "") return;
+	console.log("Prije emit");
     socketio.emit("message", { data: message.value });
+	console.log("Poslije emit");
     message.value = "";
   };
 </script>
 {% for msg in messages %}
 <script type="text/javascript">
+	console.log("Loading message");
   createMessage("{{msg.name}}", "{{msg.message}}", "{{msg.is_self}}");
+	console.log("Loaded message");
 </script>
 {% endfor %}
 {% endblock %}
