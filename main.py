@@ -105,6 +105,9 @@ def disconnect():
     print(f"{name} has left the room {room}")
     print(f"Open rooms left: {rooms}")
 
+@socketio.on_error_default
+def error_handler(e):
+    print(f"WebSocket Error: {str(e)}")
 
 if __name__ == "__main__":
-    eventlet.wsgi.server(eventlet.listen(('0.0.0.0',5000)), app)
+    eventlet.wsgi.server(eventlet.listen(('127.0.0.1',5000)), app)
