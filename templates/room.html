@@ -1,14 +1,30 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% block content %}
 <div class="message-box">
   <div class="banner">
-    <button class="banner button">Hamburger Menu</button>
-    <div class="banner text">
-      <div>Chat Room:</div>
-      <div>{{code}}</div>
+    <div class="banner-buttons left">
+      <button class="banner button menu" id="menu-button">&#9776;</button>
     </div>
-    <button class="banner button">Leave Room</button>
+
+    <div class="banner title">
+      <div class="centered">
+        <div>Chat Room</div>
+        <div id="chat-room-code">{{code}}</div>
+      </div>
+    </div>
+    <div class="banner-buttons right">
+      <button class="banner button leave"><a id="leave-room" href="/">Leave Room</a></button>
+    </div>
+    <div id="side-menu" class="side-menu">
+      <div>Users in chat</div>
+      <ul>
+        <li><a href="#">Needs to be added</a></li>
+        <li><a href="#">Needs to be added</a></li>
+        <li><a href="#">Needs to be added</a></li>
+      </ul>
+    </div>
   </div>
-  <div class="messages" id="messages"></div>
+  <div class="messages" id="messages-container"></div>
   <div class="inputs">
     <input
       type="text"
@@ -16,6 +32,7 @@
       placeholder="Message"
       name="message"
       id="message"
+      autofocus
     />
     <button type="button" name="send" id="send-btn" onClick="sendMessage()">
       Send
@@ -25,7 +42,7 @@
 <script type="text/javascript">
   var socketio = io();
   let user = "unassigned";
-  const messages = document.getElementById("messages");
+  const messagesContainer = document.getElementById("messages-container");
 
   const createMessage = (name, msg, isSelf) => {
     let alignmentClass;
@@ -50,18 +67,17 @@
     </div>
 
     `;
-  messages.innerHTML += content;
+  
+  messagesContainer.innerHTML += content
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
   	console.log("Dosao do close");
 };
-
 
 socketio.on("message", (data) => {
 	console.log("otvorio socket");
   createMessage(data.name, data.message, data.is_self);
 	console.log("zatvorio socket");
 });
-
-
 
   const sendMessage = () => {
     const message = document.getElementById("message");
@@ -71,6 +87,21 @@ socketio.on("message", (data) => {
 	console.log("Poslije emit");
     message.value = "";
   };
+
+  // JavaScript to toggle the side menu
+const menuButton = document.getElementById("menu-button");
+const sideMenu = document.getElementById("side-menu");
+
+menuButton.addEventListener("click", function () {
+  if (sideMenu.style.width === "250px") {
+    // Close the side menu
+    sideMenu.style.width = "0";
+  } else {
+    // Open the side menu
+    sideMenu.style.width = "250px";
+  }
+});
+
 </script>
 {% for msg in messages %}
 <script type="text/javascript">

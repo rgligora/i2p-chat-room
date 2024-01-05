@@ -2,12 +2,10 @@ from flask import Flask, render_template, request, session, redirect, url_for
 from flask_socketio import join_room, leave_room, send, SocketIO
 import random
 from string import ascii_uppercase
-import eventlet
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "i2pchatroom"
-socketio = SocketIO(app, async_mode='eventlet')
-
+socketio = SocketIO(app, cors_allowed_origins='*')
 rooms = {}
 
 def generate_unique_code(length):
@@ -110,4 +108,4 @@ def error_handler(e):
     print(f"WebSocket Error: {str(e)}")
 
 if __name__ == "__main__":
-    eventlet.wsgi.server(eventlet.listen(('127.0.0.1',5000)), app)
+    socketio.run(app, debug=True)
