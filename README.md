@@ -7,9 +7,11 @@ http://nw7ruavzbpwqybf4fdidoyceetwk7rc357q3jevkfvfn7j6hknfa.b32.i2p/
 ![alt text](https://github.com/rgligora/i2p-chat-room-app/blob/main/i2p-home-page.png?raw=true)
 ![alt text](https://github.com/rgligora/i2p-chat-room-app/blob/main/i2p-chat.png?raw=true)
 
+<div style="width: 50%;">
 <table>
   <tr>
     <td><img src="https://github.com/rgligora/i2p-chat-room-app/blob/main/i2p-home-page-mobile.png?raw=true" alt="alt text"></td>
     <td><img src="https://github.com/rgligora/i2p-chat-room-app/blob/main/i2p-chat-mobile.png?raw=true" alt="alt text"></td>
   </tr>
 </table>
+</div>
