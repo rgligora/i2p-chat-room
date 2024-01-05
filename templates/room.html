@@ -16,7 +16,7 @@
       <button class="banner button leave"><a id="leave-room" href="/">Leave Room</a></button>
     </div>
     <div id="side-menu" class="side-menu">
-      <div>Users in chat</div>
+      <div id="side-menu-users">Users in chat</div>
       <ul>
         <li><a href="#">Needs to be added</a></li>
         <li><a href="#">Needs to be added</a></li>
@@ -95,9 +95,11 @@ const sideMenu = document.getElementById("side-menu");
 menuButton.addEventListener("click", function () {
   if (sideMenu.style.width === "250px") {
     // Close the side menu
+    sideMenu.style.color = "black";
     sideMenu.style.width = "0";
   } else {
     // Open the side menu
+    sideMenu.style.color = "white";
     sideMenu.style.width = "250px";
   }
 });
