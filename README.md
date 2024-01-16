@@ -30,11 +30,11 @@ This project is an eepsite-based chat room application utilizing Flask and Flask
 
    ```bash
    cd /var/www/
-   git clone https://github.com/rgligora/i2p-encrypted-chat-room.git
+   git clone https://github.com/rgligora/i2p-chat-room-app.git
 
 2. **Navigate to the project directory:**
     ```bash
-   cd i2p-encrypted-chat-app
+   cd i2p-chat-room-app
 
 3. **Venv**
    ```bash
@@ -43,8 +43,8 @@ This project is an eepsite-based chat room application utilizing Flask and Flask
 4. **Create a symbolic link to this configuration file in the sites-enabled directory:**
    New terminal tab
    ```bash
-   cd /var/www/i2p-encrypted-chat-app
-   sudo ln -s /var/www/i2p-encrypted-chat-app/chat-app.conf /etc/nginx/sites-enabled
+   cd /var/www/i2p-chat-room-app
+   sudo ln -s /var/www/i2p-chat-room-app/chat-app.conf /etc/nginx/sites-enabled
 
 5. **Restart Nginx to apply the changes:**
    ```bash
