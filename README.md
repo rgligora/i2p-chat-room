@@ -50,12 +50,19 @@ This project is an eepsite-based chat room application utilizing Flask and Flask
    ```bash
    sudo service nginx restart
 
-6. **Start the Flask app:**
-   ```bash
-    gunicorn -k eventlet -w 1 -b 127.0.0.1:443 main:app
+6. **Install and start the I2P router form the official website**
 
 7. **Setup the proxy to port 4444**
     In Firefox. Settings > Network Settings > Maunal Proxy Configuration > HTTP Proxy: 127.0.0.1 Port: 4444
 
-8. **Open the eepsite**
+8. **Open the I2P Router Concole's Hidden Services Manager**
+   In the Global Tunnel Control submenu start the "Tunnel Wizard".
+   Choose a Server Tunnel setup and click next. Choose the HTTP server tunnel type and click next. Name it "I2p Chat Room" and click next. Host is 0.0.0.0 and port is 443. Select the "Automatically start tunnel when router starts" and clock finish. Wait unit the status of your newly created tunnel is green to go to the next step.
+
+9. **Start the Flask app:**
+   ```bash
+    gunicorn -k eventlet -w 1 -b 127.0.0.1:443 main:app
+
+10. **Open the eepsite**
+   Open the destination shown on your I2P Hidden Services menu next to the tunnel that you created in step 8. Example:
     http://nw7ruavzbpwqybf4fdidoyceetwk7rc357q3jevkfvfn7j6hknfa.b32.i2p/
