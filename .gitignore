@@ -7,7 +7,6 @@
 
 # System specific
 .DS_Store
-Thumbs.db
 
-/Cargo.lock
-/Cargo.toml
+Cargo.lock
+Cargo.toml

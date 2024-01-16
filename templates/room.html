@@ -304,18 +304,4 @@
   setupChat();
 </script>
 
-<script type="module">
-  import init, {
-    generate_hello_world,
-  } from '{{ url_for("static", filename="pkg/wasm_demo.js") }}';
-
-  async function runWasm() {
-    await init();
-    const helloWorld = generate_hello_world();
-    console.log(helloWorld); // This will log "Hello World" to the console
-  }
-
-  runWasm();
-</script>
-
 {% endblock %}
