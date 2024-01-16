@@ -68,3 +68,18 @@ This project is an eepsite-based chat room application utilizing Flask and Flask
 10. **Open the eepsite**
    Open the destination shown on your I2P Hidden Services menu next to the tunnel that you created in step 8. Example:
     http://nw7ruavzbpwqybf4fdidoyceetwk7rc357q3jevkfvfn7j6hknfa.b32.i2p/
+
+![alt text](https://github.com/rgligora/i2p-chat-room-app/blob/main/showcase/home-desktop.png?raw=true)
+![alt text](https://github.com/rgligora/i2p-chat-room-app/blob/main/showcase/chat-desktop.png?raw=true)
+
+<div style="width: 50%;">
+<table>
+  <tr>
+    <td><img src="https://github.com/rgligora/i2p-chat-room-app/blob/main/showcase/home-mobile.png?raw=true" alt="alt text"></td>
+    <td><img src="https://github.com/rgligora/i2p-chat-room-app/blob/main/showcase/chat-mobile.png?raw=true" alt="alt text"></td>
+  </tr>
+</table>
+</table>
+</div>
+
+![alt text](https://github.com/rgligora/i2p-chat-room-app/blob/main/showcase/chat-user-list-desktop.png?raw=true)

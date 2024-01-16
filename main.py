@@ -56,20 +56,14 @@ def encrypt_message(key, message):
         if len(key) != 32:
             raise ValueError("Key must be 32 bytes long for AES-256.")
         
-        # Ensure the message is in bytes
         if isinstance(message, str):
             message = message.encode()
-
-        # Generate a random IV for AES-GCM
         iv = os.urandom(12)
 
-        # Initialize AESGCM cipher with the given key
         aesgcm = AESGCM(key)
 
-        # Encrypt the message
         ct = aesgcm.encrypt(iv, message, None)
 
-        # Return IV + ciphertext for transmission
         return iv + ct
     except Exception as e:
         print(f"Message encription failed: {e}")
@@ -81,15 +75,11 @@ def encrypt_message(key, message):
 def decrypt_message(key, encrypted_message_base64):
     try:
         encrypted_message = base64.b64decode(encrypted_message_base64)
-        # The first 12 bytes are the IV
         iv = encrypted_message[:12]
-        # The rest is the actual ciphertext
         ct = encrypted_message[12:]
 
-        # Initialize AESGCM with the given key
         aesgcm = AESGCM(key)
 
-        # Decrypt the message
         return aesgcm.decrypt(iv, ct, None)
     except Exception as e:
         print(f"Message decryption failed: {e}")
@@ -115,20 +105,17 @@ def home():
         if create != False:
             room = generate_unique_code(4)
 
-            # Generate an RSA key pair
             private_key = rsa.generate_private_key(
                 public_exponent=65537,
                 key_size=1024,
             )
             public_key = private_key.public_key()
 
-            # Serialize public key to use in your application
             der_public_key = public_key.public_bytes(
                 encoding=serialization.Encoding.DER,
                 format=serialization.PublicFormat.SubjectPublicKeyInfo
             )
 
-            # Optionally, serialize the private key if needed
             der_private_key = private_key.private_bytes(
                 encoding=serialization.Encoding.DER,
                 format=serialization.PrivateFormat.PKCS8,
@@ -183,8 +170,6 @@ def message(data):
             "is_self": session.get("name")
         }
         
-        
-        # send the encrypted message to each member
         send(content, to=rooms[room]['members'][member]['sid'])
 
 
@@ -221,8 +206,6 @@ def connect(auth):
             "message": base64.b64encode(encrypted_message_for_member).decode('utf-8'),
             "is_self": session.get("name")
         }
-        
-        # send the encrypted message to each member
         send(content, to=rooms[room]['members'][member]['sid'])
 
     
@@ -252,7 +235,6 @@ def disconnect():
                     "is_self": session.get("name")
                 }
                 
-                # send the encrypted message to each member
                 send(content, to=rooms[room]['members'][member]['sid'])
             print(f"{name} has left the room {room}")
 

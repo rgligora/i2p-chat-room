@@ -1,8 +1,7 @@
-body{
+body {
   margin: 0;
   box-sizing: border-box;
 }
-
 
 .content {
   display: flex;
@@ -42,15 +41,15 @@ body{
   align-items: stretch;
 }
 
-.banner{
+.banner {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr; /* Three equal columns */
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   height: 15vh;
   width: 100%;
 }
 
-.banner.title{
+.banner.title {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,61 +62,61 @@ body{
   align-items: center;
 }
 
-#chat-room-code{
+#chat-room-code {
   font-weight: bold;
 }
 
-.banner-buttons{
+.banner-buttons {
   display: flex;
 }
 
-.banner-buttons.right{
+.banner-buttons.right {
   justify-content: flex-end;
 }
 
-.banner.button{
-  margin: 0; /* Remove individual button margins */
+.banner.button {
+  margin: 0;
   display: flex;
   justify-content: center;
   height: 50px;
 }
 
-.banner.button.menu{
+.banner.button.menu {
   width: 50px;
   text-align: center;
   margin-left: 20px;
 }
 
-.banner.button.leave{
+.banner.button.leave {
   width: 15vw;
   text-align: center;
   margin-right: 20px;
 }
 
-#leave-room{
+#leave-room {
   text-decoration: none;
-  color: black; 
-  display: inline-block; 
+  color: black;
+  display: inline-block;
   text-align: center;
-  width: 100%; 
+  width: 100%;
 }
 
 /* CSS for the side menu */
 .side-menu {
-  height: 100%; /* Full-height */
-  width: 0; /* Initially hidden */
+  height: 100%;
+  width: 0;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1;
   background-color: #111;
   overflow-x: hidden;
-  transition: 0.5s; /* Animation duration */
+  transition: 0.5s;
   margin-top: 15vh;
   color: white;
 }
 
-.side-menu-close-box{
+.side-menu-close-box {
   display: block;
   align-items: center;
 }
@@ -143,7 +142,7 @@ body{
   background-color: #333;
 }
 
-#side-menu-users{
+#side-menu-users {
   text-align: center;
   padding: 10px;
 }
@@ -176,13 +175,13 @@ h2 {
 
 .text {
   display: flex;
-  flex-direction: column; 
-  align-items: flex-start; 
+  flex-direction: column;
+  align-items: flex-start;
   padding: 10px;
-  
+
 }
 
-.bubble{
+.bubble {
   margin: 10px 0;
   border-radius: 8px;
   background-color: #fff;
@@ -191,7 +190,7 @@ h2 {
 }
 
 .text.self {
-  align-items: flex-end; 
+  align-items: flex-end;
 }
 
 .message-content {
@@ -202,12 +201,13 @@ h2 {
   font-size: 10px;
   color: #999;
 }
+
 .timestamp.self {
   font-size: 10px;
   color: white;
 }
 
-.bubble.self{
+.bubble.self {
   background-color: #4CAF50;
   color: white;
 }
@@ -219,7 +219,7 @@ h2 {
 
   .buttons {
     width: 100%;
-    max-width: 300px; 
+    max-width: 300px;
   }
 
   .join {
@@ -240,10 +240,8 @@ h2 {
   }
 
   .banner.button {
-    margin: 10px 0; 
+    margin: 10px 0;
   }
-
- 
 
   #message {
     width: 100%;
