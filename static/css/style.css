@@ -124,6 +124,8 @@ body{
 
 .side-menu ul {
   list-style-type: none;
+  display: flex;
+  flex-direction: column;
 }
 
 .side-menu ul li {
@@ -143,6 +145,7 @@ body{
 
 #side-menu-users{
   text-align: center;
+  padding: 10px;
 }
 
 .messages {
