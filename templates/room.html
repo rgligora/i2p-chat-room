@@ -1,5 +1,4 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <div class="message-box">
   <div class="banner">
     <div class="banner-buttons left">
@@ -13,12 +12,13 @@
       </div>
     </div>
     <div class="banner-buttons right">
-      <button class="banner button leave" id="leave-room-btn">Leave Room</button>
+      <button class="banner button leave" id="leave-room-btn">
+        Leave Room
+      </button>
     </div>
     <div id="side-menu" class="side-menu">
       <div id="side-menu-users">Users in chat</div>
-      <ul id="user-list">
-      </ul>
+      <ul id="user-list"></ul>
     </div>
   </div>
   <div class="messages" id="messages-container"></div>
@@ -50,51 +50,48 @@
   let aesKey;
 
 
-  let socketio
+  let socketio;
   async function initializeSocketConnection(encryptedAesKeyBase64) {
-    console.log(encryptedAesKeyBase64)
-    socketio = io({auth:{symmetric_key: encryptedAesKeyBase64}});
-    
+    console.log(encryptedAesKeyBase64);
+    socketio = io({ auth: { symmetric_key: encryptedAesKeyBase64 } });
 
     socketio.on("message", async (data) => {
       console.log(data.message);
       try{
         const decryptedMessage = await window.decryptMessageJS(data.message, aesKey);
         createMessage(data.name, decryptedMessage, data.is_self);
-      } catch(e){
+      } catch (e) {
         console.error("Error decrypting message:", e);
-
       }
-      
+
       //createMessage(data.name, "usao", data.is_self);
     });
 
     socketio.on("update_user_list", (userList) => {
-        const userListElement = document.getElementById("user-list");
-        userListElement.innerHTML = '';  // Clear existing list
-        userList.forEach(user => {
-          const userItem = document.createElement("li");
-          userItem.textContent = user;
-          userListElement.appendChild(userItem);
-        });
+      const userListElement = document.getElementById("user-list");
+      userListElement.innerHTML = ""; // Clear existing list
+      userList.forEach((user) => {
+        const userItem = document.createElement("li");
+        userItem.textContent = user;
+        userListElement.appendChild(userItem);
       });
-
+    });
   }
 
   let user = "unassigned";
-    const messagesContainer = document.getElementById("messages-container");
+  const messagesContainer = document.getElementById("messages-container");
 
-    const createMessage = (name, msg, isSelf) => {
-      let alignmentClass;
-      if(user === "unassigned"){
-          user = name;
-      }
-      if(name == user){
-          alignmentClass = "self";
-      }else{
-          alignmentClass = "other";
-      }
-      const content = `
+  const createMessage = (name, msg, isSelf) => {
+    let alignmentClass;
+    if (user === "unassigned") {
+      user = name;
+    }
+    if (name == user) {
+      alignmentClass = "self";
+    } else {
+      alignmentClass = "other";
+    }
+    const content = `
         <div class="text ${alignmentClass}">
             <div class="bubble ${alignmentClass}">
                 <div class="message-content">
@@ -138,16 +135,15 @@
       }
     });
 
-    const leaveRoomButton = document.getElementById("leave-room-btn");
 
-      leaveRoomButton.addEventListener("click", function() {
-          socketio.disconnect();
-          window.location.href = "/";
-      });
-  
+  const leaveRoomButton = document.getElementById("leave-room-btn");
+
+  leaveRoomButton.addEventListener("click", function () {
+    socketio.disconnect();
+    window.location.href = "/";
+  });
 
   async function setupChat() {
-
         // Timeout for wasm to load --> in the future wasm needs to load elsewhere
         await new Promise(resolve => setTimeout(resolve, 2000));
 
@@ -162,19 +158,6 @@
 
   // Start setting up the chat when the page loads
   setupChat();
-
-</script>
-
-<script type="module">
-  import init, { generate_hello_world } from '{{ url_for("static", filename="pkg/wasm_demo.js") }}';
-
-  async function runWasm() {
-      await init();
-      const helloWorld = generate_hello_world();
-      console.log(helloWorld); // This will log "Hello World" to the console
-  }
-
-  runWasm();
 </script>
 
 {% endblock %}
